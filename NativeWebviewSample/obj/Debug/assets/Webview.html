@@ -1,0 +1,52 @@
+﻿<html>
+<head>
+    
+    <title>NativeWebviewSample HTML</title>
+    
+    <script language="javascript">
+        function ad_show(id, headline, image, body, callToAction, advertiser) {
+            var new_ad = document.getElementById('ad_template').innerHTML;
+            new_ad = new_ad.split('{id}').join(id);
+            new_ad = new_ad.split('{headline}').join(headline);
+            new_ad = new_ad.split('{image}').join(image);
+            new_ad = new_ad.split('{body}').join(body);
+            new_ad = new_ad.split('{callToAction}').join(callToAction);
+            new_ad = new_ad.split('{advertiser}').join(advertiser);
+
+            document.getElementById('content').innerHTML += '<div>' + new_ad + '</div>';
+        }
+    </script>
+
+    <style>
+        #content .item { float:left; width:100%; padding:10px 0px 10px 0px; border-bottom:1px solid gray; }
+        .ad .separator { float:left; width:100%; height:26px; margin-top:10px; line-height:26px; vertical-align:middle; text-align:center; color:white; background-color:black;  }
+        .ad .separator img { float:right; width:20px; height:20px; margin:3px 3px 0px 0px; cursor:pointer; }
+        .ad .headline { clear:both; float:left; padding:5px; font-weight:bold; cursor:pointer; }
+        .ad .body { clear:both; float:left; padding:5px; cursor:pointer; }
+        .ad .callToAction { clear:left; float:left; padding:5px; color:blue; cursor:pointer; }
+        .ad .advertiser { float:right; padding:5px; color:gray; font-size:10px; cursor:pointer; }
+    </style>
+    
+</head>
+<body>
+
+    <div id="ad_template" style="display:none;">
+        <div class="ad">
+            <div class="separator">AD EXAMPLE<a href="https://support.google.com/adsense/troubleshooter/1631343" target="_blank"><img src="https://www.quantcast.com/wp-content/uploads/2015/06/download.png" /></a></div>
+            <div class="headline" onclick="app_interface.ad_clicked({id}, 'headline')">{headline}</div>
+            <div class="image" onclick="app_interface.ad_clicked({id}, 'image')"><img width="100%" src="file://{image}" /></div>
+            <div class="body" onclick="app_interface.ad_clicked({id}, 'body')">{body}</div>
+            <div class="callToAction" onclick="app_interface.ad_clicked({id}, 'callToAction')">{callToAction}</div>
+            <div class="advertiser" onclick="app_interface.ad_clicked({id}, 'advertiser')">{advertiser}</div>
+        </div>
+    </div>
+
+    <h1>NativeWebviewSample HTML</h1>
+
+    <div id="content">
+        <div class="item">ITEM 1</div>
+        <div class="item">ITEM 2</div>
+        <div class="item">ITEM 3</div>
+    </div>
+
+</body></html>
